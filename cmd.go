@@ -13,8 +13,8 @@ func main() {
 	iris.Get("/static/*path", staticMedia)
 
 	iris.Get("/login/:user", func(ctx *iris.Context) {
-
-		ctx.Session().Set("name", ctx.Param("user"))
+		user := ctx.Param("user")
+		ctx.Session().Set("name", user)
 		ctx.Session().Set("login", "yup")
 
 		ctx.Write("All ok session set to: %s", ctx.Session().GetString("name"))
